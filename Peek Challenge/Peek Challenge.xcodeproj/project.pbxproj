@@ -1,0 +1,571 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		28C48E2C1C9F356300ACC912 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C48E2B1C9F356300ACC912 /* main.m */; };
+		28C48E2F1C9F356300ACC912 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C48E2E1C9F356300ACC912 /* AppDelegate.m */; };
+		28C48E321C9F356300ACC912 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C48E311C9F356300ACC912 /* ViewController.m */; };
+		28C48E351C9F356300ACC912 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28C48E331C9F356300ACC912 /* Main.storyboard */; };
+		28C48E371C9F356300ACC912 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28C48E361C9F356300ACC912 /* Assets.xcassets */; };
+		28C48E3A1C9F356300ACC912 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28C48E381C9F356300ACC912 /* LaunchScreen.storyboard */; };
+		28C48E451C9F356300ACC912 /* Peek_ChallengeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C48E441C9F356300ACC912 /* Peek_ChallengeTests.m */; };
+		28C48E501C9F356300ACC912 /* Peek_ChallengeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C48E4F1C9F356300ACC912 /* Peek_ChallengeUITests.m */; };
+		28C48E621C9F3F6600ACC912 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28C48E5E1C9F3F6600ACC912 /* Fabric.framework */; };
+		28C48E631C9F3F6700ACC912 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28C48E5F1C9F3F6600ACC912 /* TwitterKit.framework */; };
+		28C48E641C9F3F6700ACC912 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 28C48E601C9F3F6600ACC912 /* TwitterKitResources.bundle */; };
+		28C48E651C9F3F6700ACC912 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28C48E611C9F3F6600ACC912 /* TwitterCore.framework */; };
+		28C48E681C9F463B00ACC912 /* PeekFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C48E671C9F463B00ACC912 /* PeekFeedViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		28C48E411C9F356300ACC912 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28C48E1F1C9F356300ACC912 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 28C48E261C9F356300ACC912;
+			remoteInfo = "Peek Challenge";
+		};
+		28C48E4C1C9F356300ACC912 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28C48E1F1C9F356300ACC912 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 28C48E261C9F356300ACC912;
+			remoteInfo = "Peek Challenge";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		28C48E271C9F356300ACC912 /* Peek Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Peek Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		28C48E2B1C9F356300ACC912 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		28C48E2D1C9F356300ACC912 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		28C48E2E1C9F356300ACC912 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		28C48E301C9F356300ACC912 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		28C48E311C9F356300ACC912 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		28C48E341C9F356300ACC912 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		28C48E361C9F356300ACC912 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		28C48E391C9F356300ACC912 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		28C48E3B1C9F356300ACC912 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28C48E401C9F356300ACC912 /* Peek ChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Peek ChallengeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		28C48E441C9F356300ACC912 /* Peek_ChallengeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Peek_ChallengeTests.m; sourceTree = "<group>"; };
+		28C48E461C9F356300ACC912 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28C48E4B1C9F356300ACC912 /* Peek ChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Peek ChallengeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		28C48E4F1C9F356300ACC912 /* Peek_ChallengeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Peek_ChallengeUITests.m; sourceTree = "<group>"; };
+		28C48E511C9F356300ACC912 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28C48E5E1C9F3F6600ACC912 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		28C48E5F1C9F3F6600ACC912 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
+		28C48E601C9F3F6600ACC912 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TwitterKitResources.bundle; sourceTree = "<group>"; };
+		28C48E611C9F3F6600ACC912 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = "<group>"; };
+		28C48E661C9F463B00ACC912 /* PeekFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeekFeedViewController.h; sourceTree = "<group>"; };
+		28C48E671C9F463B00ACC912 /* PeekFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeekFeedViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		28C48E241C9F356300ACC912 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28C48E621C9F3F6600ACC912 /* Fabric.framework in Frameworks */,
+				28C48E651C9F3F6700ACC912 /* TwitterCore.framework in Frameworks */,
+				28C48E631C9F3F6700ACC912 /* TwitterKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28C48E3D1C9F356300ACC912 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28C48E481C9F356300ACC912 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		28C48E1E1C9F356300ACC912 = {
+			isa = PBXGroup;
+			children = (
+				28C48E291C9F356300ACC912 /* Peek Challenge */,
+				28C48E431C9F356300ACC912 /* Peek ChallengeTests */,
+				28C48E4E1C9F356300ACC912 /* Peek ChallengeUITests */,
+				28C48E281C9F356300ACC912 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		28C48E281C9F356300ACC912 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				28C48E271C9F356300ACC912 /* Peek Challenge.app */,
+				28C48E401C9F356300ACC912 /* Peek ChallengeTests.xctest */,
+				28C48E4B1C9F356300ACC912 /* Peek ChallengeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		28C48E291C9F356300ACC912 /* Peek Challenge */ = {
+			isa = PBXGroup;
+			children = (
+				28C48E5E1C9F3F6600ACC912 /* Fabric.framework */,
+				28C48E5F1C9F3F6600ACC912 /* TwitterKit.framework */,
+				28C48E601C9F3F6600ACC912 /* TwitterKitResources.bundle */,
+				28C48E611C9F3F6600ACC912 /* TwitterCore.framework */,
+				28C48E2D1C9F356300ACC912 /* AppDelegate.h */,
+				28C48E2E1C9F356300ACC912 /* AppDelegate.m */,
+				28C48E301C9F356300ACC912 /* ViewController.h */,
+				28C48E311C9F356300ACC912 /* ViewController.m */,
+				28C48E661C9F463B00ACC912 /* PeekFeedViewController.h */,
+				28C48E671C9F463B00ACC912 /* PeekFeedViewController.m */,
+				28C48E331C9F356300ACC912 /* Main.storyboard */,
+				28C48E361C9F356300ACC912 /* Assets.xcassets */,
+				28C48E381C9F356300ACC912 /* LaunchScreen.storyboard */,
+				28C48E3B1C9F356300ACC912 /* Info.plist */,
+				28C48E2A1C9F356300ACC912 /* Supporting Files */,
+			);
+			path = "Peek Challenge";
+			sourceTree = "<group>";
+		};
+		28C48E2A1C9F356300ACC912 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				28C48E2B1C9F356300ACC912 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		28C48E431C9F356300ACC912 /* Peek ChallengeTests */ = {
+			isa = PBXGroup;
+			children = (
+				28C48E441C9F356300ACC912 /* Peek_ChallengeTests.m */,
+				28C48E461C9F356300ACC912 /* Info.plist */,
+			);
+			path = "Peek ChallengeTests";
+			sourceTree = "<group>";
+		};
+		28C48E4E1C9F356300ACC912 /* Peek ChallengeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				28C48E4F1C9F356300ACC912 /* Peek_ChallengeUITests.m */,
+				28C48E511C9F356300ACC912 /* Info.plist */,
+			);
+			path = "Peek ChallengeUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		28C48E261C9F356300ACC912 /* Peek Challenge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 28C48E541C9F356300ACC912 /* Build configuration list for PBXNativeTarget "Peek Challenge" */;
+			buildPhases = (
+				28C48E231C9F356300ACC912 /* Sources */,
+				28C48E241C9F356300ACC912 /* Frameworks */,
+				28C48E251C9F356300ACC912 /* Resources */,
+				28C48E5D1C9F3F2100ACC912 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Peek Challenge";
+			productName = "Peek Challenge";
+			productReference = 28C48E271C9F356300ACC912 /* Peek Challenge.app */;
+			productType = "com.apple.product-type.application";
+		};
+		28C48E3F1C9F356300ACC912 /* Peek ChallengeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 28C48E571C9F356300ACC912 /* Build configuration list for PBXNativeTarget "Peek ChallengeTests" */;
+			buildPhases = (
+				28C48E3C1C9F356300ACC912 /* Sources */,
+				28C48E3D1C9F356300ACC912 /* Frameworks */,
+				28C48E3E1C9F356300ACC912 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				28C48E421C9F356300ACC912 /* PBXTargetDependency */,
+			);
+			name = "Peek ChallengeTests";
+			productName = "Peek ChallengeTests";
+			productReference = 28C48E401C9F356300ACC912 /* Peek ChallengeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		28C48E4A1C9F356300ACC912 /* Peek ChallengeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 28C48E5A1C9F356300ACC912 /* Build configuration list for PBXNativeTarget "Peek ChallengeUITests" */;
+			buildPhases = (
+				28C48E471C9F356300ACC912 /* Sources */,
+				28C48E481C9F356300ACC912 /* Frameworks */,
+				28C48E491C9F356300ACC912 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				28C48E4D1C9F356300ACC912 /* PBXTargetDependency */,
+			);
+			name = "Peek ChallengeUITests";
+			productName = "Peek ChallengeUITests";
+			productReference = 28C48E4B1C9F356300ACC912 /* Peek ChallengeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		28C48E1F1C9F356300ACC912 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = dudduss;
+				TargetAttributes = {
+					28C48E261C9F356300ACC912 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					28C48E3F1C9F356300ACC912 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 28C48E261C9F356300ACC912;
+					};
+					28C48E4A1C9F356300ACC912 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 28C48E261C9F356300ACC912;
+					};
+				};
+			};
+			buildConfigurationList = 28C48E221C9F356300ACC912 /* Build configuration list for PBXProject "Peek Challenge" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 28C48E1E1C9F356300ACC912;
+			productRefGroup = 28C48E281C9F356300ACC912 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				28C48E261C9F356300ACC912 /* Peek Challenge */,
+				28C48E3F1C9F356300ACC912 /* Peek ChallengeTests */,
+				28C48E4A1C9F356300ACC912 /* Peek ChallengeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		28C48E251C9F356300ACC912 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28C48E641C9F3F6700ACC912 /* TwitterKitResources.bundle in Resources */,
+				28C48E3A1C9F356300ACC912 /* LaunchScreen.storyboard in Resources */,
+				28C48E371C9F356300ACC912 /* Assets.xcassets in Resources */,
+				28C48E351C9F356300ACC912 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28C48E3E1C9F356300ACC912 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28C48E491C9F356300ACC912 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		28C48E5D1C9F3F2100ACC912 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 09c46789a092fc36ea13b07024e53910dd0ac64c 11b811a3a7612cb524766e0ce0f5de6356f7323d0567e9438bf792e3db10747c./Fabric.framework/run 09c46789a092fc36ea13b07024e53910dd0ac64c 11b811a3a7612cb524766e0ce0f5de6356f7323d0567e9438bf792e3db10747c";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		28C48E231C9F356300ACC912 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28C48E321C9F356300ACC912 /* ViewController.m in Sources */,
+				28C48E2F1C9F356300ACC912 /* AppDelegate.m in Sources */,
+				28C48E2C1C9F356300ACC912 /* main.m in Sources */,
+				28C48E681C9F463B00ACC912 /* PeekFeedViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28C48E3C1C9F356300ACC912 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28C48E451C9F356300ACC912 /* Peek_ChallengeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28C48E471C9F356300ACC912 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28C48E501C9F356300ACC912 /* Peek_ChallengeUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		28C48E421C9F356300ACC912 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 28C48E261C9F356300ACC912 /* Peek Challenge */;
+			targetProxy = 28C48E411C9F356300ACC912 /* PBXContainerItemProxy */;
+		};
+		28C48E4D1C9F356300ACC912 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 28C48E261C9F356300ACC912 /* Peek Challenge */;
+			targetProxy = 28C48E4C1C9F356300ACC912 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		28C48E331C9F356300ACC912 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				28C48E341C9F356300ACC912 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		28C48E381C9F356300ACC912 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				28C48E391C9F356300ACC912 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		28C48E521C9F356300ACC912 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		28C48E531C9F356300ACC912 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		28C48E551C9F356300ACC912 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Peek",
+					Challenge,
+				);
+				INFOPLIST_FILE = "Peek Challenge/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dudduss.Peek-Challenge";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		28C48E561C9F356300ACC912 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Peek",
+					Challenge,
+				);
+				INFOPLIST_FILE = "Peek Challenge/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dudduss.Peek-Challenge";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		28C48E581C9F356300ACC912 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Peek ChallengeTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dudduss.Peek-ChallengeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Peek Challenge.app/Peek Challenge";
+			};
+			name = Debug;
+		};
+		28C48E591C9F356300ACC912 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Peek ChallengeTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dudduss.Peek-ChallengeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Peek Challenge.app/Peek Challenge";
+			};
+			name = Release;
+		};
+		28C48E5B1C9F356300ACC912 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Peek ChallengeUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dudduss.Peek-ChallengeUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Peek Challenge";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		28C48E5C1C9F356300ACC912 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Peek ChallengeUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dudduss.Peek-ChallengeUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Peek Challenge";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		28C48E221C9F356300ACC912 /* Build configuration list for PBXProject "Peek Challenge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28C48E521C9F356300ACC912 /* Debug */,
+				28C48E531C9F356300ACC912 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		28C48E541C9F356300ACC912 /* Build configuration list for PBXNativeTarget "Peek Challenge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28C48E551C9F356300ACC912 /* Debug */,
+				28C48E561C9F356300ACC912 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		28C48E571C9F356300ACC912 /* Build configuration list for PBXNativeTarget "Peek ChallengeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28C48E581C9F356300ACC912 /* Debug */,
+				28C48E591C9F356300ACC912 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		28C48E5A1C9F356300ACC912 /* Build configuration list for PBXNativeTarget "Peek ChallengeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28C48E5B1C9F356300ACC912 /* Debug */,
+				28C48E5C1C9F356300ACC912 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 28C48E1F1C9F356300ACC912 /* Project object */;
+}
