@@ -21,7 +21,7 @@ static NSInteger * const numTweetsToDownload = 10;
     self.date = [NSDate date];
     self.date  = [self.date dateByAddingTimeInterval: 86400];
     
-    self.title = @"Peek Feed";
+    self.title = @"@Peek";
     self.navigationItem.hidesBackButton = true;
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     
@@ -229,19 +229,92 @@ static NSInteger * const numTweetsToDownload = 10;
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Perform the real delete action here. Note: you may need to check editing style
-    //   if you do not perform delete only.
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    TWTRTweet *tweet = self.tweets[indexPath.row];
-    [self.deletedTweets addObject:tweet.tweetID];
+    NSLog(@"Slected row.");
     
-    [self.tweets removeObjectAtIndex:indexPath.row];
-    [self.tableView reloadData];
-    
-    NSLog(@"Deleted row.");
 }
+
+-(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
+    {
+        // Delete something here
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Delete Tweet"
+                                              message:@"Are you sure you want to delete this tweet from your feed?"
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction
+                                       actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action")
+                                       style:UIAlertActionStyleCancel
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           NSLog(@"Cancel action");
+                                       }];
+        
+        UIAlertAction *okAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"Yes", @"OK action")
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       TWTRTweet *tweet = self.tweets[indexPath.row];
+                                       [self.deletedTweets addObject:tweet.tweetID];
+                                       
+                                       [self.tweets removeObjectAtIndex:indexPath.row];
+                                       [self.tableView reloadData];
+                                       
+                                       NSLog(@"Deleted row.");
+                                   }];
+        
+        [alertController addAction:cancelAction];
+        [alertController addAction:okAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+
+    }];
+    
+    UITableViewRowAction *retweet = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Retweet" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
+    {
+        TWTRTweet *tweet = self.tweets[indexPath.row];
+        [self retweetTweet :tweet.tweetID];
+        
+    }];
+    
+    delete.backgroundColor = [UIColor redColor];
+    retweet.backgroundColor = [UIColor colorWithRed:0 green:0.675 blue:0.929 alpha:1];
+    
+    return @[delete];
+}
+
+//-(void) getPeekTweets:(bool*)refresh
+-(void) retweetTweet:(NSString*)tweetID {
+    
+    TWTRAPIClient *client = [[TWTRAPIClient alloc] init];
+    NSString *statusesShowEndpoint =[NSString stringWithFormat:@"https://api.twitter.com/1.1/statuses/retweet/%@.json", tweetID];
+    
+    NSError *clientError;
+    
+    NSURLRequest *request = [[[Twitter sharedInstance] APIClient] URLRequestWithMethod:@"POST" URL:statusesShowEndpoint parameters:NULL error:&clientError];
+
+    
+    if (request) {
+        [client sendTwitterRequest:request completion:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            if (data) {
+                
+                NSLog(@"success");
+            }
+        }];
+    } else {
+        NSLog(@"Client Error: %@", clientError);
+    }
+    
+         
+    
+    
+    
+}
+
 
 
 
