@@ -9,11 +9,17 @@
 #import <UIKit/UIKit.h>
 #import <TwitterKit/TwitterKit.h>
 
+
+
 @interface PeekFeedViewController : UIViewController  <UITableViewDelegate>
 
 @property (nonatomic,retain) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray *tweets;
+@property (nonatomic, strong) NSMutableArray *deletedTweets;
+@property (nonatomic, strong) NSDate *date;
+@property (nonatomic, assign) BOOL allHasLoaded;
+
 
 
 @end

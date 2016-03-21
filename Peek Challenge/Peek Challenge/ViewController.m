@@ -41,6 +41,7 @@
     
     if (lastSession) {
         [self performSegueWithIdentifier:@"toPeekFeed" sender:self];
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
         
         NSLog(@"signed in as %@", [lastSession userName]);
         return;
@@ -57,6 +58,7 @@
     [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession *session, NSError *error) {
         if (session) {
             [self performSegueWithIdentifier:@"toPeekFeed" sender:self];
+            self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
             
             NSLog(@"signed in as %@", [session userName]);
         } else {

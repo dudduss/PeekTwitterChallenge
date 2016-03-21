@@ -10,6 +10,7 @@
 #import <TwitterKit/TwitterKit.h>
 
 static NSString * const TweetTableReuseIdentifier = @"TweetCell";
+static NSInteger * const numTweetsToDownload = 10;
 
 @implementation PeekFeedViewController
 
@@ -17,12 +18,30 @@ static NSString * const TweetTableReuseIdentifier = @"TweetCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.date = [NSDate date];
+    self.date  = [self.date dateByAddingTimeInterval: 86400];
+    
     self.title = @"Peek Feed";
+    self.navigationItem.hidesBackButton = true;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0 green:0.675 blue:0.929 alpha:1];
+//    self.navigationItem.backgroundColor = [
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
+
+   
+    self.tweets = [[NSMutableArray alloc]init];
+    self.deletedTweets = [[NSMutableArray alloc]init];
+    
     
     //Add right bar button item for refresh
     //get rid of back button
     
 //    [self getPeekTweets];
+    _allHasLoaded  = false;
     
     
     self.tableView.dataSource = self;
@@ -33,8 +52,9 @@ static NSString * const TweetTableReuseIdentifier = @"TweetCell";
     self.tableView.allowsSelection = NO;
     [self.tableView registerClass:[TWTRTweetTableViewCell class] forCellReuseIdentifier:TweetTableReuseIdentifier];
     
-    [self getPeekTweets];
+    [self getPeekTweets: true];
     
+
     
     
 //    TWTRAPIClient *APIClient = [[TWTRAPIClient alloc] init];
@@ -50,11 +70,33 @@ static NSString * const TweetTableReuseIdentifier = @"TweetCell";
 
 }
 
--(void) getPeekTweets {
-//    
+-(void) getPeekTweets:(bool*)refresh {
+    
+    if (refresh) {
+        self.date = [NSDate date];
+        self.date  = [self.date dateByAddingTimeInterval: 86400];
+        _allHasLoaded = false;
+    } else {
+        if (_allHasLoaded) {
+            return;
+        }
+    }
+    
+    //Convert NSDate to String for API call
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *stringFromDate = [formatter stringFromDate:self.date];
+    
+    NSLog(stringFromDate);
+    
+    
+//
     TWTRAPIClient *client = [[TWTRAPIClient alloc] init];
     NSString *statusesShowEndpoint = @"https://api.twitter.com/1.1/search/tweets.json?q=%40peek";
-    NSDictionary *params = @{@"count" : @"20",@"lang" : @"en" };
+    
+
+    
+    NSDictionary *params = @{@"count" : [NSString stringWithFormat:@"%i", numTweetsToDownload],@"lang" : @"en", @"until": stringFromDate};
 
     NSError *clientError;
     
@@ -65,25 +107,52 @@ static NSString * const TweetTableReuseIdentifier = @"TweetCell";
             if (data) {
                 // handle the response data e.g.
                 
-                [self.tweets removeAllObjects];
+//                [self.tweets removeAllObjects];
                 
                 NSError *jsonError;
                 NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
                 
+                NSLog(@"After request: %@", json);
+                
                 NSArray *statuses = [json valueForKey:@"statuses"];
                 
-                self.tweets = [[NSMutableArray alloc]init];
+                if (refresh) {
+                    [self.tweets removeAllObjects];
+                }
+                
                 
                 for (NSDictionary* status in statuses)
                 {
                     TWTRTweet *tweet = [[TWTRTweet alloc] initWithJSONDictionary:status];
-                    [self.tweets addObject:tweet];
+                    
+                    if ([self.deletedTweets containsObject:tweet.tweetID] != true) {
+                        [self.tweets addObject:tweet];
+                    }
+                    
+                    if (status == [statuses lastObject]) {
+                        self.date = tweet.createdAt;
+//                        NSLog(tweet.tweetID);/
+                    }
                     
                 }
                 
-                NSLog(@"tableView is '%@'",_tableView);
-                [self.tableView reloadData];
-                NSLog(@"count %lu", (unsigned long)self.tweets.count);
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                [formatter setDateFormat:@"yyyy-MM-dd"];
+                NSString *stringFromDate = [formatter stringFromDate:self.date];
+                
+                NSLog(@"After request: %@", stringFromDate);
+                
+                if (self.tweets.count > 0) {
+                    
+                    if (self.tweets.count < numTweetsToDownload) {
+                        _allHasLoaded  = true;
+                    }
+                    
+                    [self.tableView reloadData];
+                }
+            
+                
+//                NSLog(@"count %lu", (unsigned long)self.tweets.count);
                 
             }
             else {
@@ -116,9 +185,6 @@ static NSString * const TweetTableReuseIdentifier = @"TweetCell";
     [cell.tweetView setBackgroundColor:([indexPath row]%2)?[UIColor colorWithRed:0.961 green:0.929 blue:0.078 alpha:1]:[UIColor whiteColor]];
     
     
-    
-//    [cell setBackgroundColor:[UIColor lightGrayColor]];
-    
     return cell;
 }
 
@@ -133,6 +199,51 @@ static NSString * const TweetTableReuseIdentifier = @"TweetCell";
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     cell.backgroundColor = ([indexPath row]%2)?[UIColor blueColor]:[UIColor whiteColor];
 }
+
+- (void)refresh:(UIRefreshControl *)refreshControl {
+    // Do your job, when done:
+    [self getPeekTweets: true];
+    [refreshControl endRefreshing];
+}
+
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
+                  willDecelerate:(BOOL)decelerate {
+    CGFloat actualPosition = scrollView.contentOffset.y;
+    CGFloat contentHeight = scrollView.contentSize.height - (self.tableView.frame.size.height);
+    if (actualPosition >= contentHeight) {
+        // fetch resources
+        
+        if (_allHasLoaded) {
+            return;
+        }
+        NSLog(@"only once");
+        [self getPeekTweets :false];
+        //[self.tableView reloadData];
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return YES - we will be able to delete all rows
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Perform the real delete action here. Note: you may need to check editing style
+    //   if you do not perform delete only.
+    
+    TWTRTweet *tweet = self.tweets[indexPath.row];
+    [self.deletedTweets addObject:tweet.tweetID];
+    
+    [self.tweets removeObjectAtIndex:indexPath.row];
+    [self.tableView reloadData];
+    
+    NSLog(@"Deleted row.");
+}
+
+
 
 
 @end
