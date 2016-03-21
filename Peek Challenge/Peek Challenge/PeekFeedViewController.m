@@ -13,6 +13,7 @@ static NSString * const TweetTableReuseIdentifier = @"TweetCell";
 
 @implementation PeekFeedViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -23,7 +24,6 @@ static NSString * const TweetTableReuseIdentifier = @"TweetCell";
     
 //    [self getPeekTweets];
     
-//    TWTRTweet *t = [[TWTRTweet alloc] initWithJSONDictionary:<#(NSDictionary *)#>
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -51,7 +51,7 @@ static NSString * const TweetTableReuseIdentifier = @"TweetCell";
 }
 
 -(void) getPeekTweets {
-    
+//    
     TWTRAPIClient *client = [[TWTRAPIClient alloc] init];
     NSString *statusesShowEndpoint = @"https://api.twitter.com/1.1/search/tweets.json?q=%40peek";
     NSDictionary *params = @{@"count" : @"20",@"lang" : @"en" };
@@ -111,7 +111,6 @@ static NSString * const TweetTableReuseIdentifier = @"TweetCell";
     TWTRTweetTableViewCell *cell = (TWTRTweetTableViewCell *) [tableView dequeueReusableCellWithIdentifier:TweetTableReuseIdentifier forIndexPath:indexPath];
     [cell configureWithTweet:tweet];
     cell.tweetView.delegate = self;
-    
 
     //Alternating between yellow and white
     [cell.tweetView setBackgroundColor:([indexPath row]%2)?[UIColor colorWithRed:0.961 green:0.929 blue:0.078 alpha:1]:[UIColor whiteColor]];

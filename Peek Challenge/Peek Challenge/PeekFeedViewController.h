@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <TwitterKit/TwitterKit.h>
 
-@interface PeekFeedViewController : UIViewController  <TWTRTweetViewDelegate>
+@interface PeekFeedViewController : UIViewController  <UITableViewDelegate>
 
 @property (nonatomic,retain) IBOutlet UITableView *tableView;
 
