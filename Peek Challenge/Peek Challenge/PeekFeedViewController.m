@@ -10,7 +10,7 @@
 #import <TwitterKit/TwitterKit.h>
 
 static NSString * const TweetTableReuseIdentifier = @"TweetCell";
-static NSInteger * const numTweetsToDownload = 10;
+static NSInteger * const numTweetsToDownload = 5;
 
 @implementation PeekFeedViewController
 
@@ -20,53 +20,32 @@ static NSInteger * const numTweetsToDownload = 10;
     
     self.date = [NSDate date];
     self.date  = [self.date dateByAddingTimeInterval: 86400];
+    self.tweets = [[NSMutableArray alloc]init];
+    self.deletedTweets = [[NSMutableArray alloc]init];
+    _allHasLoaded  = false;
     
+    //Setting nav bar characteristics
     self.title = @"@Peek";
     self.navigationItem.hidesBackButton = true;
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
-    
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0 green:0.675 blue:0.929 alpha:1];
-//    self.navigationItem.backgroundColor = [
     
+    //Setting refresh control characteristics
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:refreshControl];
 
-   
-    self.tweets = [[NSMutableArray alloc]init];
-    self.deletedTweets = [[NSMutableArray alloc]init];
-    
-    
-    //Add right bar button item for refresh
-    //get rid of back button
-    
-//    [self getPeekTweets];
-    _allHasLoaded  = false;
-    
-    
+    //Setting table view characteristics
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
     self.tableView.estimatedRowHeight = 150;
-    self.tableView.rowHeight = UITableViewAutomaticDimension; // Explicitly set on iOS 8 if using automatic row height calculation
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.allowsSelection = NO;
     [self.tableView registerClass:[TWTRTweetTableViewCell class] forCellReuseIdentifier:TweetTableReuseIdentifier];
     
+    //Function to get tweets
     [self getPeekTweets: true];
-    
-
-    
-    
-//    TWTRAPIClient *APIClient = [[TWTRAPIClient alloc] init];
-    
-    
-//    self.dataSource = [[TWTRSearchTimelineDataSource alloc] initWithSearchQuery:@"%40peek" APIClient:APIClient languageCode:@"en" maxTweetsPerRequest:40];
-//    self.dataSource = [[TWTRSearchTimelineDataSource alloc] initWithSearchQuery:@"%40peek" APIClient:APIClient languageCode:(twtr_nullable "@en")];
-    
-//    self.dataSource = [[TWTRUserTimelineDataSource alloc] initWithScreenName:@"Peek" APIClient:APIClient];
-//    self.dataSource = [[TWTRSearchTimelineDataSource alloc] initWithSearchQuery:@"%40peek" APIClient:APIClient];
-    
-    
 
 }
 
@@ -82,21 +61,17 @@ static NSInteger * const numTweetsToDownload = 10;
         }
     }
     
-    //Convert NSDate to String for API call
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    NSString *stringFromDate = [formatter stringFromDate:self.date];
-    
-    NSLog(stringFromDate);
-    
-    
-//
     TWTRAPIClient *client = [[TWTRAPIClient alloc] init];
     NSString *statusesShowEndpoint = @"https://api.twitter.com/1.1/search/tweets.json?q=%40peek";
-    
 
+    NSMutableDictionary *params=[[NSMutableDictionary alloc]init];
+
+    [params setValue:[NSString stringWithFormat:@"%i", numTweetsToDownload] forKey:@"count"];
+    [params setValue:@"en" forKey:@"lang"];
     
-    NSDictionary *params = @{@"count" : [NSString stringWithFormat:@"%i", numTweetsToDownload],@"lang" : @"en", @"until": stringFromDate};
+    if (!refresh) {
+        [params setValue:self.lastTweetID forKey:@"max_id"];
+    }
 
     NSError *clientError;
     
@@ -105,19 +80,18 @@ static NSInteger * const numTweetsToDownload = 10;
     if (request) {
         [client sendTwitterRequest:request completion:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
             if (data) {
-                // handle the response data e.g.
-                
-//                [self.tweets removeAllObjects];
-                
+
                 NSError *jsonError;
                 NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
                 
-                NSLog(@"After request: %@", json);
+//                NSLog(@"JSON: %@", json);
                 
                 NSArray *statuses = [json valueForKey:@"statuses"];
                 
                 if (refresh) {
                     [self.tweets removeAllObjects];
+                } else {
+                    [self.tweets removeLastObject];
                 }
                 
                 
@@ -131,7 +105,7 @@ static NSInteger * const numTweetsToDownload = 10;
                     
                     if (status == [statuses lastObject]) {
                         self.date = tweet.createdAt;
-//                        NSLog(tweet.tweetID);/
+                        self.lastTweetID = tweet.tweetID;
                     }
                     
                 }
@@ -140,19 +114,14 @@ static NSInteger * const numTweetsToDownload = 10;
                 [formatter setDateFormat:@"yyyy-MM-dd"];
                 NSString *stringFromDate = [formatter stringFromDate:self.date];
                 
-                NSLog(@"After request: %@", stringFromDate);
-                
                 if (self.tweets.count > 0) {
-                    
-                    if (self.tweets.count < numTweetsToDownload) {
+
+                    if (statuses.count < numTweetsToDownload) {
                         _allHasLoaded  = true;
                     }
                     
                     [self.tableView reloadData];
                 }
-            
-                
-//                NSLog(@"count %lu", (unsigned long)self.tweets.count);
                 
             }
             else {
@@ -217,9 +186,10 @@ static NSInteger * const numTweetsToDownload = 10;
         if (_allHasLoaded) {
             return;
         }
-        NSLog(@"only once");
+        
+        //Each time you scroll down, fetch the next set of tweets
         [self getPeekTweets :false];
-        //[self.tableView reloadData];
+        
     }
 }
 
@@ -287,7 +257,7 @@ static NSInteger * const numTweetsToDownload = 10;
     return @[delete];
 }
 
-//-(void) getPeekTweets:(bool*)refresh
+// Code for retweeting a tweet.
 -(void) retweetTweet:(NSString*)tweetID {
     
     TWTRAPIClient *client = [[TWTRAPIClient alloc] init];
@@ -308,15 +278,6 @@ static NSInteger * const numTweetsToDownload = 10;
     } else {
         NSLog(@"Client Error: %@", clientError);
     }
-    
-         
-    
-    
-    
 }
-
-
-
-
 
 @end
